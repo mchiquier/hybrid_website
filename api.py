@@ -32,23 +32,22 @@ def process():
     lowFreqPath = ''
     if request.method == 'POST':
         highpassimg = request.files['highpassimg']
-        print(highpassimg)
-        highpassimg.save(secure_filename("static/images/" + highpassimg.filename))
         print("Saved1")
+        highpassimg.save("static/images/" + secure_filename(highpassimg.filename))
         lowpassimg = request.files['lowpassimg']
-        print("Saved2 _ ")
-        lowpassimg.save(secure_filename("static/images/" + lowpassimg.filename))
-        print(lowpassimg)
-        print(highpassimg)
+        print("Saved2")
+        highpass_path = "static/images/" + secure_filename(highpassimg.filename)
+        lowpass_path = "static/images/" + secure_filename(lowpassimg.filename)
+        lowpassimg.save("static/images/" + secure_filename(lowpassimg.filename))
         # Return output path here
         high_pass_threshold = request.form.get('highpassthresh')
         low_pass_threshold = request.form.get('lowpassthresh')
         print(high_pass_threshold)
         print(low_pass_threshold)
-        hybrid = hybridImage(highpassimg, lowpassimg, int(high_pass_threshold), int(low_pass_threshold))
+        hybrid = hybridImage(highpass_path, lowpass_path, int(high_pass_threshold), int(low_pass_threshold))
         print("cool")
-        #hybrid.save(secure_filename("/static/results/output.png"))
-        return '/static/results/ok.png'
+        misc.imsave("static/images/output.png", numpy.real(hybrid))
+        return '/static/images/output.png'
 
     misc.imsave("images/marilyn-einstein.png", numpy.real(hybrid))
     #return on the desk and then put it back out 
