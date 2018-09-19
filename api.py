@@ -5,6 +5,7 @@ from flask import send_from_directory, send_file
 from werkzeug.utils import secure_filename
 from scipy import misc
 import numpy
+import time
 import os
 from calculations import hybridImage
 
@@ -46,12 +47,11 @@ def process():
         print(low_pass_threshold)
         hybrid = hybridImage(highpass_path, lowpass_path, int(high_pass_threshold), int(low_pass_threshold))
         print("cool")
-        misc.imsave("static/images/output.png", numpy.real(hybrid))
-        return '/static/images/output.png'
+        sec = str(round(time.time() * 1000))+ ".png"
+        misc.imsave("static/images/" + sec, numpy.real(hybrid))
+        return "static/images/" + sec
 
-    misc.imsave("images/marilyn-einstein.png", numpy.real(hybrid))
     #return on the desk and then put it back out 
-    hybrid = hybridImage(file1, file2, int(high_pass_threshold), int(low_pass_threshold))
 
     return 'images/marilyn-einstein.png'
     #send_file('images/einstein.png')
