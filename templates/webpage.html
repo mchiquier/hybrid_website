@@ -17,14 +17,14 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="static/scripts9.js"></script> 
+        <script src="static/script13.js"></script> 
 
         <style>
         .container {
             float: left;
             width: 40%
         }
-        .lowpass {
+        .lowpassimg {
             float: left;
             width: 20%
         }
@@ -33,7 +33,7 @@
             float: left;
             width: 20%;
         }
-        .highpass {
+        .highpassimg {
             float: left;
             width: 20%;
         }
@@ -48,9 +48,9 @@
             <h2><center> My optical illusion website {{name}}</center> </h2>
             <br>
             <h1>High Pass Image</h1>
-            <input type = "file" name="highpassimg"/><br>
+            <input type = "file" name="highpassimg" onchange="readURL(this);"/><br>
             <h1>Second image</h1>
-            <input type="file" name="lowpassimg"><br>
+            <input type="file" name="lowpassimg" onchange="readURL2(this);"/><br>
             <h1>First high pass threshold</h1>
             <input type="range" min="1" max="100" name = "highpassthresh" value="50" class="slider"><br>
             <h1 id="second">Second low pass threshold</h1> 
@@ -65,15 +65,9 @@
             <input type = "submit"> </center>
             </form>
         </div>
-        <div class = "lowpass">
-            <img id = "lowpass" src = "">
-            </div>
         <div class="result">
             <img id="result-image" src="https://images.pexels.com/photos/953214/pexels-photo-953214.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350">
         </div>
-        <div class = "highpass">
-            <img id = "highpass" src = "">
-            </div>
     </body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
