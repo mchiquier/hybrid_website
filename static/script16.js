@@ -5,8 +5,8 @@ function readURL(input) {
         reader.onload = function (e) {
             $('#highpass')
                 .attr('src', e.target.result)
-                .width(100)
-                .height(100);
+                .width(200)
+                .height(200);
         };
 
         reader.readAsDataURL(input.files[0]);
@@ -20,8 +20,8 @@ function readURL2(input) {
         reader.onload = function (e) {
             $('#lowpass')
                 .attr('src', e.target.result)
-                .width(300)
-                .height(300);
+                .width(200)
+                .height(200);
         };
 
         reader.readAsDataURL(input.files[0]);
@@ -58,7 +58,9 @@ $("form#data").submit(function(e) {
            {
                console.log("Changing src to" + data);
                document.getElementById("result-image").src = data;
-               console.log("Changed src to" + data);
+               document.getElementById("result-image2").src = data;
+               console.log("Changed src to" + data);        
+               $("result-image2").css({'width':'120px' , 'height':'120px'});               
            }
          });
 

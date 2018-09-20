@@ -17,25 +17,21 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="static/script13.js"></script> 
+        <script src="static/script18.js"></script> 
 
         <style>
         .container {
             float: left;
-            width: 40%
+            width: 200px;
+            height: 300px;
         }
-        .lowpassimg {
+        .images {
             float: left;
-            width: 20%
+            transform: (scale(2));
         }
-        
-        .result {
-            float: left;
-            width: 20%;
-        }
-        .highpassimg {
-            float: left;
-            width: 20%;
+
+        .results {
+            float: center;
         }
 
         </style>
@@ -65,8 +61,23 @@
             <input type = "submit"> </center>
             </form>
         </div>
-        <div class="result">
-            <img id="result-image" src="https://images.pexels.com/photos/953214/pexels-photo-953214.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350">
+        <div class = "images">
+            <div class = "lowpass">
+            <img id = "lowpass" src = "https://www.google.com/search?q=cat&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjWzdjt48fdAhVRwFkKHbalAIAQ_AUIDygC&biw=1280&bih=563#imgrc=Sx42zOsahzEQ-M:">
+            </div>
+        <div class = "highpass">
+            <img id = "highpass" width = 50% height = 50% src = "https://www.google.com/search?q=cat&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjWzdjt48fdAhVRwFkKHbalAIAQ_AUIDygC&biw=1280&bih=563#imgrc=Sx42zOsahzEQ-M:">
+            </div>
+        </div>
+        <div class = "results" >
+            <div class="result">
+            <img id="result-image" src="">
+            </div>
+            <div class = "size"></div>
+            <div class="result">  
+                <img id="result-image2" src="">
+                </div>
+            </div>
         </div>
     </body>
         <!--[if lt IE 7]>

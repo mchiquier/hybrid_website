@@ -58,6 +58,7 @@ $("form#data").submit(function(e) {
            {
                console.log("Changing src to" + data);
                document.getElementById("result-image").src = data;
+               document.getElementById("result-image2").src = data;
                console.log("Changed src to" + data);
            }
          });
