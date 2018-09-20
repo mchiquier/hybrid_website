@@ -1,3 +1,11 @@
+function updateTextInput(val) {
+    document.getElementById('textInput').value=val; 
+  }
+
+function updateTextInput2(val) {
+    document.getElementById('textInput2').value=val; 
+  }
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -59,7 +67,8 @@ $("form#data").submit(function(e) {
                console.log("Changing src to" + data);
                document.getElementById("result-image").src = data;
                document.getElementById("result-image2").src = data;
-               console.log("Changed src to" + data);
+               console.log("Changed src to" + data);        
+               $("size").css({'width':'120px' , 'height':'120px'});               
            }
          });
 

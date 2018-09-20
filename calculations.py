@@ -3,6 +3,7 @@ from numpy.fft import fft2, ifft2, fftshift, ifftshift
 from scipy import misc
 from scipy import ndimage
 import math
+import cv2
 
 def scaleSpectrum(A):
    return numpy.real(numpy.log10(numpy.absolute(A) + numpy.ones(A.shape)))
@@ -42,12 +43,15 @@ def highPass(imageMatrix, sigma):
 
 
 def hybridImage(highFreqPath, lowFreqPath, sigmaHigh, sigmaLow):
-   highFreqImg = ndimage.imread(highFreqPath, flatten=True)
-   lowFreqImg = ndimage.imread(lowFreqPath, flatten=True)
-   highPassed = highPass(highFreqImg, sigmaHigh)
-   lowPassed = lowPass(lowFreqImg, sigmaLow)
-
-   return highPassed + lowPassed
+    highFreqImg = ndimage.imread(highFreqPath, flatten=True)
+    lowFreqImg = ndimage.imread(lowFreqPath, flatten=True)
+    img = cv2.imread(highFreqPath)
+    new = cv2.resize(img, dsize=(450, 450), interpolation=cv2.INTER_CUBIC)
+    highPassed = highPass(highFreqImg, sigmaHigh)
+    lowPassed = lowPass(lowFreqImg, sigmaLow)
+    print("enw")
+    print(new)
+    return highPassed + lowPassed
 
 if __name__ == "__main__":
    hybrid = hybridImage("uploads/einstein.png", "images/marilyn.png", 25, 10)

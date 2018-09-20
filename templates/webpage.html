@@ -17,7 +17,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="static/script18.js"></script> 
+        <script src="static/script20.js"></script> 
 
         <style>
         .container {
@@ -48,13 +48,19 @@
             <h1>Second image</h1>
             <input type="file" name="lowpassimg" onchange="readURL2(this);"/><br>
             <h1>First high pass threshold</h1>
-            <input type="range" min="1" max="100" name = "highpassthresh" value="50" class="slider"><br>
+            <input type="range" onchange="updateTextInput(this.value);" min="1" max="40" name = "highpassthresh" value="50" class="slider"><br>
+            <input type="text" id="textInput" value="">
+            "The lower the threshold, the more image appears"
             <h1 id="second">Second low pass threshold</h1> 
             <script>
                $("#second").text()
             </script>
-            <input type="range" name = "lowpassthresh" min="1" max="100" value="50" class="slider"><br>
-            </h1>
+            <input type="range" onchange="updateTextInput2(this.value);" name = "lowpassthresh" min="1" max="40" value="50" class="slider"><br>
+            <input type="text" id="textInput2" value="">
+            "The higher the threshold, the more image appears"
+
+    
+        </h1>
             <br>
             <br>
             <center>
