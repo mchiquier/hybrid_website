@@ -50,7 +50,6 @@ def process():
 @app.route('/final_submission', methods = ['GET', 'POST'])
 def final_submission():
     data = request.args.get("a").split(";")
-    print(data)
     return "successful"
 if __name__ == '__main__':
     app.run(debug=False)
