@@ -49,8 +49,6 @@ def hybridImage(highFreqPath, lowFreqPath, sigmaHigh, sigmaLow):
     new = cv2.resize(img, dsize=(450, 450), interpolation=cv2.INTER_CUBIC)
     highPassed = highPass(highFreqImg, sigmaHigh)
     lowPassed = lowPass(lowFreqImg, sigmaLow)
-    print("enw")
-    print(new)
     return highPassed + lowPassed
 
 if __name__ == "__main__":

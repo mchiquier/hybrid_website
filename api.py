@@ -17,10 +17,13 @@ api = Api(app)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = 'my unobvious secret key'
 
-
 @app.route('/', methods=['GET'])
 def home():
-        return render_template("webpage.html")
+    ###############
+    images = os.listdir('/Users/miachiquier/test2/hybrid_website/images')
+    img1 = images[4]
+    img2 = images[5]
+    return render_template("webpage.html?file1=" + img1 + "file2=" + img2)
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -28,7 +31,6 @@ def allowed_file(filename):
 
 @app.route('/process', methods = ['GET', 'POST'])
 def process():
-
     highFreqPath = ''
     lowFreqPath = ''
     if request.method == 'POST':
@@ -52,8 +54,9 @@ def process():
         return "static/images/" + sec
 
     #return on the desk and then put it back out 
-
     return 'images/marilyn-einstein.png'
     #send_file('images/einstein.png')
+    # host='0.0.0.0'
+
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=False, host = '0.0.0.0')
