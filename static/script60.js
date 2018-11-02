@@ -25,7 +25,7 @@ function readURL(input) {
     }
 }
 
-function setCookie(cname, exdays) {
+function setCookie(cname='', exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
@@ -82,16 +82,15 @@ function checkCookie() {
     var username = getCookie("username");
     if (username != "") {
         alert("Welcome again " + username);
-        setCookie(username,200);
+        document.cookie = username;
         console.log(document.cookie);
         console.log("what");
     } else {
         username = prompt("Please enter your name:", "");
         curr_username = username;
         if (username != "" && username != null) {
-            setCookie(username, 365);
+            document.cookie = username;
             console.log(document.cookie);
-            console.log("what");
         }
     }
    
@@ -113,6 +112,7 @@ function readURL2(input) {
 }
 
 $( document ).ready(function(){
+checkCookie();
 
 $("form#data").submit(function(e) {
 
@@ -136,10 +136,10 @@ $("form#data").submit(function(e) {
            }
          });
     e.preventDefault(); // avoid to execute the actual submit of the form.
-    checkCookie();
+    setCookie('',250);
 });
 
-$("#final").finalize(function(e) {
+$("#final").click(function(e) {
     console.log("a=" + document.cookie);
     console.log("this is in finalize above");
     $.ajax({
