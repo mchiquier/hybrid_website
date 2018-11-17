@@ -53,9 +53,9 @@ def process():
     images = os.listdir('static/images')
     highFreqPath = ''
     lowFreqPath = ''
-    print(img1)
-    global img1 
-    global img2
+  #  print(img1)
+  #  global img1 
+  #  global img2
     print("now")
     print(img2)
     print("now2")

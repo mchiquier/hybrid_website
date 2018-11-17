@@ -1,25 +1,29 @@
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <link rel="stylesheet" type="text/css" href={{url_for('static', filename='style.css')}}>
-        <link rel="stylesheet" type="text/css" href={{url_for('static', filename='skeleton.css')}}>
-        <link rel="stylesheet" type="text/css" href={{url_for('static', filename='normalize.css')}}>
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
 
-        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<head>
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="static/script60.js"></script> 
+    <link rel="stylesheet" href="https://unpkg.com/chota@latest">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 
-        <style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="static/script60.js"></script>
+
+    <style>
+        body {
+            margin-left: 250px;
+            margin-right: 250px;
+        }
         .container {
             float: left;
             width: 200px;
@@ -31,67 +35,129 @@
             max-width: 25%;
             padding: 0 4px;
         }
+        .slider {
+            max-width: 140px;
+            float: left;
+        }
+        .disp {
+            max-width: 25%;
+            float: left; 
+            max-height: 16px; 
+            border: none !important;
+        }
 	
 	.results {
             float: center;
         }
 
         </style>
-    </head>
+</head>
 
-    <body>
-        <div class="container">
-            <form id="data" action="/process" method = "POST" enctype="multipart/form-data">
-            <h2><center> My optical illusion website </center> </h2>
-            <br>
-	     For both parameters, moving it left will make the big image appear more and moving both right will make the small image appear more. The reason there are two parameters is to fade one image out and the other appear more.  
-            <h1>Big Image</h1>
-            <!--<img src= "static/images/{{file1}}" alt= "static/images/{{file1}}" name = "highpassimg">-->
-            <input type="range" onchange="updateTextInput(this.value);" min="1" max="40" name = "highpassthresh" value="50" class="slider"><br>
-            <input type="text" id="textInput" value="">
-            "The lower the threshold, the more the big image appears in both hybrid images"
-            <!--<img src= "static/images/{{file2}}" alt= "static/images/{{file2}}" name = "lowpassimg">-->
-            <h1 id="second">Small image</h1> 
-            <input type="range" onchange="updateTextInput2(this.value);" "setCookie('param2', this.value);" name = "lowpassthresh" min="1" max="40" value="50" class="slider"><br>
-            <input type="text" id="textInput2" value="">
-            "The higher the threshold, the more the mall image appears in both hybrid images"    
-        </h1>
-            <br>
-            <br>
-            <center>
-            <input type = "submit"> </center>
-            </form>
-            <input type = "button" id = "final" value = "Final"> </center>
-            <form id="nextpage" action="/" method = "GET" enctype="multipart/form-data">
-            <input type = "submit" value = "Next pair"> </center>
-            </form>
+<body>
+    <nav class="nav">
+        <div class="nav-center">
+            <h2>My Optical Illusion Website</h2>
         </div>
-        <div class = "images">
-            <div class = "lowpass">
-            <img id = "highpass" src = "static/images/{{file2}}" width = 200px height = 200px>
+    </nav>
+    <div class="row">
+        <div class="col">
+            For both parameters, moving it left will make the big image appear more and moving both right will make
+            the small image appear more. The reason there are two parameters is to fade one image out and the other
+            appear more.
+        </div>
+    </div>
+    <div class="row">
+        <form id="data" action="/process" method="POST" enctype="multipart/form-data">
+            <span>
+                <div class="row">
+                    <div class="col card">
+                        <header>
+                            <h4>Big Image</h4>
+                        </header>
+                        <p>"The lower the threshold, the more the big image appears in both hybrid images"</p>
+                        <!--<img src= "static/images/{{file1}}" alt= "static/images/{{file1}}" name = "highpassimg">-->
+                        <div class="row">
+                            <span>
+                                <input type="range" onchange="updateTextInput(this.value);" min="1" max="40" name="highpassthresh"
+                                    value="50" class="slider">
+                                <input class="disp" type="text" id="textInput" value="">
+                            </span>
+                        </div>
+
+                        <!--<img src= "static/images/{{file2}}" alt= "static/images/{{file2}}" name = "lowpassimg">-->
+                    </div>
+                    <div class="col card">
+                        <header>
+                            <h4 id="second">Small image</h4>
+                        </header>
+                        <p>"The higher the threshold, the more the mall image appears in both hybrid images"</p>
+                        <div class="row">
+                            <span>
+                                <input type="range" onchange="updateTextInput2(this.value);"
+                                    "setCookie('param2', this.value);" name="lowpassthresh" min="1" max="40" value="50"
+                                    class="slider">
+                                <input class="disp" type="text" id="textInput2" value="">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col pull-right">
+                        <h2>Instruction Video</h2>
+                        <video width="400" height="200" controls>
+                            <source src="static/explain2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </span>
+    </div>
+    <div class="row">
+        <input class="button" type="submit">
+    </div>
+    </form>
+    <div class="row">
+        <form id="nextpage" action="/" method="GET" enctype="multipart/form-data">
+            <input class="button secondary" type="submit" value="Next pair">
+        </form>
+    </div>
+    <h3>Images</h3>
+    <div class="row">
+        <div class="col">
+            <div class="card pull-left">
+                <header>Big Image</header>
+                <img id="highpass" src="static/images/{{file2}}" width=200px height=200px>
             </div>
-            <div class="result">
-            <img id="result-image" src="" width = 200px height = 200px>
+        </div>
+        <div>
+            <div class="card result pull-right">
+                <header>Result</header>
+                <img id="result-image" src="" width=200px height=200px>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card highpass pull-left">
+                <header>Small Image</header>
+                <img id="lowpass" width=75px height=75px src="static/images/{{file1}}">
             </div>
-            <div class = "images">
-            <div class = "highpass">
-            <img id = "lowpass" width = 75px height = 75px src = "static/images/{{file1}}">
+        </div>
+        <div>
+            <div class="card result pull-right">
+                <header>Result</header>
+                <img id="result-image2" src="" width=75px height=75px>
             </div>
-            <div class="result">  
-            <img id="result-image2" src="" width = 75px height = 75px>
-            </div>
-	     Instruction video
-	    <video width="400" height="400" controls>
-            <source src="static/explain2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-            </video>
-            </div>
-    </body>
-        <!--[if lt IE 7]>
+        </div>
+
+    </div>
+
+
+    </div>
+
+</body>
+<!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        
-        <script src="" async defer></script>
-    </body>
+
+<script src="" async defer></script>
+</body>
 <html>
