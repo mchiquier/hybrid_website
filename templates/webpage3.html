@@ -31,8 +31,8 @@
             max-width: 25%;
             padding: 0 4px;
         }
-
-        .results {
+	
+	.results {
             float: center;
         }
 
@@ -44,16 +44,17 @@
             <form id="data" action="/process" method = "POST" enctype="multipart/form-data">
             <h2><center> My optical illusion website </center> </h2>
             <br>
-            <h1>High Pass Image</h1>
+	     For both parameters, moving it left will make the big image appear more and moving both right will make the small image appear more. The reason there are two parameters is to fade one image out and the other appear more.  
+            <h1>Big Image</h1>
             <!--<img src= "static/images/{{file1}}" alt= "static/images/{{file1}}" name = "highpassimg">-->
             <input type="range" onchange="updateTextInput(this.value);" min="1" max="40" name = "highpassthresh" value="50" class="slider"><br>
             <input type="text" id="textInput" value="">
-            "The lower the threshold, the more image appears"
+            "The lower the threshold, the more the big image appears in both hybrid images"
             <!--<img src= "static/images/{{file2}}" alt= "static/images/{{file2}}" name = "lowpassimg">-->
-            <h1 id="second">Second low pass threshold</h1> 
+            <h1 id="second">Small image</h1> 
             <input type="range" onchange="updateTextInput2(this.value);" "setCookie('param2', this.value);" name = "lowpassthresh" min="1" max="40" value="50" class="slider"><br>
             <input type="text" id="textInput2" value="">
-            "The higher the threshold, the more image appears"    
+            "The higher the threshold, the more the mall image appears in both hybrid images"    
         </h1>
             <br>
             <br>
@@ -67,19 +68,24 @@
         </div>
         <div class = "images">
             <div class = "lowpass">
-            <img id = "lowpass" src = "static/images/{{file2}}" width = 200px height = 200px>
+            <img id = "highpass" src = "static/images/{{file2}}" width = 200px height = 200px>
             </div>
             <div class="result">
-            <img id="result-image" src="" style="width:200px;">
+            <img id="result-image" src="" width = 200px height = 200px>
             </div>
             </div>
             <div class = "images">
             <div class = "highpass">
-            <img id = "highpass" width = 100px height = 100px src = "static/images/{{file1}}">
+            <img id = "lowpass" width = 75px height = 75px src = "static/images/{{file1}}">
             </div>
             <div class="result">  
-            <img id="result-image2" src="" style="width: 100px;">
+            <img id="result-image2" src="" width = 75px height = 75px>
             </div>
+	     Instruction video
+	    <video width="400" height="400" controls>
+            <source src="static/explain2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            </video>
             </div>
     </body>
         <!--[if lt IE 7]>
@@ -88,4 +94,4 @@
         
         <script src="" async defer></script>
     </body>
-</html>
+<html>
