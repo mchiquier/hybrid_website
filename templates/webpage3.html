@@ -17,7 +17,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="static/script60.js"></script>
+    <script src="static/script93.js"></script>
 
     <style>
         body {
@@ -118,6 +118,9 @@
         <form id="nextpage" action="/" method="GET" enctype="multipart/form-data">
             <input class="button secondary" type="submit" value="Next pair">
         </form>
+        <input type = "button" id = "final" value = "Final"> </center>
+        <input type = "button" id = "startover" value = "Start Over"> </center>
+
     </div>
     <h3>Images</h3>
     <div class="row">
@@ -130,7 +133,7 @@
         <div>
             <div class="card result pull-right">
                 <header>Result</header>
-                <img id="result-image" src="" width=200px height=200px>
+                <img id="result-image" src={{file3}} width=200px height=200px>
             </div>
         </div>
     </div>
@@ -138,13 +141,13 @@
         <div class="col">
             <div class="card highpass pull-left">
                 <header>Small Image</header>
-                <img id="lowpass" width=75px height=75px src="static/images/{{file1}}">
+                <img id="lowpass" width=40px height=40px src="static/images/{{file1}}">
             </div>
         </div>
         <div>
             <div class="card result pull-right">
                 <header>Result</header>
-                <img id="result-image2" src="" width=75px height=75px>
+                <img id="result-image2" src={{file3}} width=40px height=40px>
             </div>
         </div>
 
@@ -152,6 +155,8 @@
 
 
     </div>
+
+
 
 </body>
 <!--[if lt IE 7]>

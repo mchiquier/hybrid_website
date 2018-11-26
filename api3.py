@@ -23,6 +23,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = 'my unobvious secret key'
 img1 = ''
 img2 = ''
+string = '' 
 
 @app.route('/', methods=['GET'])
 def home():
@@ -39,8 +40,10 @@ def home():
     lowFreqImg = ndimage.imread("static/images/" + img2, flatten=True)
     imsave("static/images/" +  img1 , highFreqImg)
     imsave("static/images/" +  img2  , lowFreqImg)
-    
-    return render_template("webpage3.html",file1=img1,file2=img2)
+    hybrid = hybridImage('static/images/' + img2, 'static/images/' + img1, 10, 10)
+    timestamp = time.time()
+    imsave("static/temp/" + str(timestamp) + ".png",numpy.real(hybrid)) 
+    return render_template("webpage3.html",file1=img1,file2=img2,file3="static/temp/" + str(timestamp) + ".png", file4 = str(random))
     
 def allowed_file(filename):
     return '.' in filename and \
@@ -50,6 +53,9 @@ def allowed_file(filename):
 def process():
     high_pass_threshold = request.form.get('highpassthresh')
     low_pass_threshold = request.form.get('lowpassthresh')
+    print("?")
+    print(high_pass_threshold)
+    print(low_pass_threshold)
     images = os.listdir('static/images')
     highFreqPath = ''
     lowFreqPath = ''
@@ -71,7 +77,14 @@ def process():
 
 @app.route('/final_submission', methods = ['GET', 'POST'])
 def final_submission():
+    print(request.args.get("a"))
     data = request.args.get("a").split(";")
+    if len(data) > 2:
+        with open("out.txt", 'w') as out:
+            print("HI")
+            for elem in data:
+                out.write(elem)
+                out.write("/n")
     return "successful"
 
-app.run(host = '0.0.0.0', port = 80)
+app.run()
