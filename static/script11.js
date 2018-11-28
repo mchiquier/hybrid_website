@@ -41,6 +41,7 @@ function setCookie(cname='', exdays) {
     }
     else 
     {
+    //the cookie stays the same and is just updated if it has the same name 
     document.cookie = cname + highpassimg + lowpassimg + "=" + highthresh + "+" + lowthresh + ";" + expires + ";path=/";
     console.log(document.cookie);
     }
@@ -149,6 +150,7 @@ $("form#data").submit(function(e) {
          });
     e.preventDefault(); // avoid to execute the actual submit of the form.
     setCookie('',250);
+    $("#final").click();
 });
 
 $("#startover").click(function(e) {
@@ -163,23 +165,19 @@ $("#final").click(function(e) {
     $.ajax({
            type: "GET",
            url: "final_submission",
+           //the data below is being sent to the url above 
            data: "a=" + document.cookie,
            contentType: false,
            processData : false,
            success: function(data)
            {
-            var random = ''
-            var cookies = document.cookie.split(";");
-            if (cookies.length > 3) {    
-            if (!random) {
-                var random = Math.random().toString(36).substr(2, 5);}            
-            alert("Thanks! Your code is: " + random);  
-            document.cookie = "random=" + random + ";" + expires + ";path=/";
-                } 
-            else {
-                difference = 3 - (cookies.length-1)
-                alert("You are not done with your cookies yet. You have " + difference + " pairs left")
-            }        
+           if (data.substring(0,10) == "successful") {
+            alert(data)
+            deleteAllCookies();
+           }
+           else {     
+               alert(data);
+           }
            }
          });
     // because its not a submit item we dont need to do e.preventDefault();

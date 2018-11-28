@@ -10,6 +10,9 @@ from scipy import ndimage
 import cv2
 import time
 import os
+import random
+import numpy as np
+import string
 from calculations import hybridImage
 import random
 from random import randint
@@ -69,6 +72,8 @@ def process():
         hybrid = hybridImage('static/images/' + img2, 'static/images/' + img1, int(high_pass_threshold), int(low_pass_threshold))
         sec = str(round(time.time() * 1000))+ ".png"
         misc.imsave("static/results/" + sec, numpy.real(hybrid))
+    
+
         return "static/results/" + sec
     #return on the desk and then put it back out 
 
@@ -79,12 +84,30 @@ def process():
 def final_submission():
     print(request.args.get("a"))
     data = request.args.get("a").split(";")
+    count = len(data)
+    print(count, "Count")
     if len(data) > 2:
-        with open("out.txt", 'w') as out:
-            print("HI")
+        with open("out.txt", 'a') as out:
             for elem in data:
                 out.write(elem)
-                out.write("/n")
-    return "successful"
+                out.write("\n")          
+    if (count%5 == 0) and count > 0: 
+        count = 0
+        random = np.random.randint(0,99)
+        count2 = 0
+        randomstring = ''
+        with open("randomtext.txt", 'r') as rand:
+            for elem in rand:
+                if count2 == random:
+                    randomstring = elem 
+                count2 += 1
+        with open("out.txt", 'a') as out:
+            out.write(str(randomstring) + "\n")
+        return "Congratulations! You're done. Your code is: " + randomstring.rstrip().rstrip("\n")
+    elif count < 0:
+        count = 0
+        return "You still have 5 pairs left"
+    else:
+        return "You still have " + str(5-count%5) + " pairs left"
 
 app.run()
