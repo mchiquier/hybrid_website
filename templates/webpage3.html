@@ -17,7 +17,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="static/script11.js"></script>
+    <script src="static/script.js"></script>
 
     <style>
         body {
@@ -74,7 +74,8 @@
                         <header>
                             <h4>Big Image</h4>
                         </header>
-                        <p>"The lower the threshold, the more the big image appears in both hybrid images"</p>
+                        <p>"Slider more left: The more the big image appears in both hybrid images"</p>
+                        <p>"Slider more right: The less the big image appears in both hybrid images"</p>
                         <!--<img src= "static/images/{{file1}}" alt= "static/images/{{file1}}" name = "highpassimg">-->
                         <div class="row">
                             <span>
@@ -90,7 +91,8 @@
                         <header>
                             <h4 id="second">Small image</h4>
                         </header>
-                        <p>"The higher the threshold, the more the mall image appears in both hybrid images"</p>
+                        <p>"Slider more left: The less the small image appaers in both hybrid images"</p>
+                        <p>"Slider more right: The more the small image appaers in both hybrid images"</p>
                         <div class="row">
                             <span>
                                 <input type="range" onchange="updateTextInput2(this.value);"
@@ -127,7 +129,7 @@
         <div class="col">
             <div class="card pull-left">
                 <header>Big Image</header>
-                <img id="highpass" src="static/images/{{file2}}" width=200px height=200px>
+                <img id="highpass" src="static/images/{{file1}}" width=200px height=200px>
             </div>
         </div>
         <div>
@@ -141,7 +143,7 @@
         <div class="col">
             <div class="card highpass pull-left">
                 <header>Small Image</header>
-                <img id="lowpass" width=40px height=40px src="static/images/{{file1}}">
+                <img id="lowpass" width=40px height=40px src="static/images/{{file2}}">
             </div>
         </div>
         <div>

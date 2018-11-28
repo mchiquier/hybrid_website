@@ -43,7 +43,7 @@ def home():
     lowFreqImg = ndimage.imread("static/images/" + img2, flatten=True)
     imsave("static/images/" +  img1 , highFreqImg)
     imsave("static/images/" +  img2  , lowFreqImg)
-    hybrid = hybridImage('static/images/' + img2, 'static/images/' + img1, 10, 10)
+    hybrid = hybridImage('static/images/' + img1, 'static/images/' + img2, 10, 10)
     timestamp = time.time()
     imsave("static/temp/" + str(timestamp) + ".png",numpy.real(hybrid)) 
     return render_template("webpage3.html",file1=img1,file2=img2,file3="static/temp/" + str(timestamp) + ".png", file4 = str(random))
@@ -69,7 +69,7 @@ def process():
     print(img2)
     print("now2")
     if request.method == 'POST':
-        hybrid = hybridImage('static/images/' + img2, 'static/images/' + img1, int(high_pass_threshold), int(low_pass_threshold))
+        hybrid = hybridImage('static/images/' + img1, 'static/images/' + img2, int(high_pass_threshold), int(low_pass_threshold))
         sec = str(round(time.time() * 1000))+ ".png"
         misc.imsave("static/results/" + sec, numpy.real(hybrid))
     
@@ -103,7 +103,7 @@ def final_submission():
                 count2 += 1
         with open("out.txt", 'a') as out:
             out.write(str(randomstring) + "\n")
-        return "Congratulations! You're done. Your code is: " + randomstring.rstrip().rstrip("\n")
+        return "Congratulations! You're done. Your code is:" + randomstring.rstrip().rstrip("\n")
     elif count < 0:
         count = 0
         return "You still have 5 pairs left"
